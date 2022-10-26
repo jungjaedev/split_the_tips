@@ -1,20 +1,37 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import Constants from 'expo-constants';
+import { StyleSheet, View,TextInput } from 'react-native';
+import { ThemeProvider } from 'styled-components';
+import styled from 'styled-components/native';
 
-export default function App() {
+import Theme from '@/Theme';
+import Main from '@/components/Main';
+import PriceInput from '@/components/PriceInput';
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ThemeProvider theme={Theme}>
+      <Container>
+        <View style={styles.statusBar} />
+        <Main />
+        <PriceInput />
+        <StatusBar style="auto" />
+      </Container>
+    </ThemeProvider>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  statusBar: {
+    height: Constants.statusBarHeight,
   },
 });
+
+const Container = styled.View`
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+export default App;
